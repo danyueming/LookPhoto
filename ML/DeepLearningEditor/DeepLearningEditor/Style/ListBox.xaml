@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DeepLearningEditor">
+
+    <local:PathToLogoConvert x:Key="imageConvert"></local:PathToLogoConvert>
+    
+    <Style x:Key="HrizonListBoxStyle" TargetType="ListBox" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBox">
+                    <Border x:Name="Bd"  BorderBrush="{TemplateBinding BorderBrush}" 
+                                          Width="{TemplateBinding Width}"
+                                          Height="{TemplateBinding Height}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          Background="{TemplateBinding Background}"
+                                          Padding="0">
+                        <ScrollViewer VerticalScrollBarVisibility="Disabled" 
+                                      HorizontalScrollBarVisibility="Auto">
+                            <StackPanel Orientation="Horizontal" IsItemsHost="True">
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="ImageItemStyle" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Border x:Name="PartBorder" >
+                        <Grid x:Name="Partgrid" Margin="2">
+                            <Image Width="120"
+                               Height="90"
+                               Source="{Binding CustomSource}"></Image>
+                        </Grid>
+                    </Border>
+                 
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Partgrid" Property="Background" Value="#fceeb9"/>
+                        </Trigger>
+                        <Trigger Property="Selector.IsSelected" Value="true">
+                            <Setter TargetName="Partgrid" Property="Background" Value="#fae388"/>
+                            <Setter TargetName="PartBorder" Property="BorderBrush" Value="Blue"/>
+                            <Setter TargetName="PartBorder" Property="BorderThickness" Value="3"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <DataTemplate x:Key="DetailViewTemplate">
+        <Border BorderBrush="Black"
+                BorderThickness="1"
+                CornerRadius="0">
+            <Grid>
+                <Image Source="{Binding CustomSource}" Stretch="Fill"></Image>
+            </Grid>
+        </Border>
+        
+    </DataTemplate>
+</ResourceDictionary>
